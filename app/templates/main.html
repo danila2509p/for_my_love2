@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOR_YOU</title>
+    <style>
+        /* Основные стили */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Dancing Script', cursive; /* Рукописный шрифт */
+            position: relative;
+        }
+
+        /* Контейнер для текста */
+        .text-container {
+            color: white;
+            font-size: 3rem;
+            text-align: center;
+            opacity: 0; /* Начальная прозрачность */
+            animation: fadeIn 3s ease-in-out forwards; /* Анимация появления */
+        }
+
+        /* Анимация появления текста */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px); /* Начальное смещение вниз */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0); /* Конечное положение */
+            }
+        }
+
+        /* Стили для сердца */
+        .heart {
+            position: absolute;
+            bottom: 20px; /* Расположение снизу */
+            color: red; /* Цвет сердца */
+            font-size: 3rem;
+            opacity: 0; /* Начальная прозрачность */
+            animation: heartAppear 2s ease-in-out forwards, heartBeat 1.5s infinite ease-in-out 2s; /* Анимации */
+        }
+
+        /* Стили для кнопки */
+        .button {
+            background-color: red; /* Красный фон */
+            color: white; /* Белый текст */
+            font-family: 'Dancing Script', cursive; /* Рукописный шрифт */
+            font-size: 1.5rem; /* Размер текста */
+            padding: 0.8rem 2rem; /* Внутренние отступы */
+            border: none; /* Убираем границу */
+            border-radius: 5px; /* Закругленные углы */
+            cursor: pointer; /* Курсор в виде указателя */
+            opacity: 0; /* Начальная прозрачность */
+            transform: translateY(20px); /* Начальное смещение вниз */
+            animation: fadeInUp 1s ease-in-out forwards 1s; /* Анимация появления */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Плавные переходы */
+            position: absolute; /* Абсолютное позиционирование */
+            top: 20px; /* Отступ сверху */
+            right: 20px; /* Отступ справа */
+        }
+
+        /* Анимация появления кнопки */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Эффект при наведении на кнопку */
+        .button:hover {
+            background-color: darkred; /* Темно-красный фон */
+            transform: scale(1.05); /* Увеличение кнопки */
+        }
+
+        .button1 {
+            background-color: red; /* Красный фон */
+            color: white; /* Белый текст */
+            font-family: 'Dancing Script', cursive; /* Рукописный шрифт */
+            font-size: 1.5rem; /* Размер текста */
+            padding: 0.8rem 2rem; /* Внутренние отступы */
+            border: none; /* Убираем границу */
+            border-radius: 5px; /* Закругленные углы */
+            cursor: pointer; /* Курсор в виде указателя */
+            opacity: 0; /* Начальная прозрачность */
+            transform: translateY(20px); /* Начальное смещение вниз */
+            animation: fadeInUp 1s ease-in-out forwards 1s; /* Анимация появления */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Плавные переходы */
+            position: absolute; /* Абсолютное позиционирование */
+            top: 20px; /* Отступ сверху */
+            left: 20px; /* Отступ слева */
+        }
+
+        /* Эффект при наведении на кнопку */
+        .button1:hover {
+            background-color: darkred; /* Темно-красный фон */
+            transform: scale(1.05); /* Увеличение кнопки */
+        }
+
+        /* Анимация появления сердца */
+        @keyframes heartAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(20px); /* Начальное смещение вниз */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0); /* Конечное положение */
+            }
+        }
+
+        /* Анимация пульсации сердца */
+        @keyframes heartBeat {
+            0% {
+                transform: scale(1); /* Нормальный размер */
+            }
+            50% {
+                transform: scale(1.2); /* Увеличение */
+            }
+            100% {
+                transform: scale(1); /* Возврат к нормальному размеру */
+            }
+        }
+
+        /* Медиа-запросы для адаптивности */
+        @media (max-width: 768px) {
+            .text-container {
+                font-size: 2rem; /* Уменьшаем размер шрифта */
+            }
+
+            .button, .button1 {
+                font-size: 1.2rem; /* Уменьшаем размер шрифта кнопок */
+                padding: 0.5rem 1rem; /* Уменьшаем отступы */
+            }
+
+            .heart {
+                font-size: 2rem; /* Уменьшаем размер сердца */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .text-container {
+                font-size: 1.5rem; /* Еще больше уменьшаем размер шрифта */
+            }
+
+            .button, .button1 {
+                font-size: 1rem; /* Еще больше уменьшаем размер шрифта кнопок */
+                padding: 0.4rem 0.8rem; /* Еще больше уменьшаем отступы */
+            }
+
+            .heart {
+                font-size: 1.5rem; /* Еще больше уменьшаем размер сердца */
+            }
+        }
+    </style>
+    <!-- Подключение рукописного шрифта из Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Подключение Font Awesome для иконки сердца -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    {% if auth == True %}
+        <a href="{% url 'image' %}">
+            <button class="button1">Фото</button>
+        </a>
+        <!-- Кнопка "Выйти из аккаунта" в правом верхнем углу -->
+        <a href="{% url 'out' %}">
+            <button class="button">Выйти из аккаунта</button>
+        </a>
+        <div class="text-container">
+            <h2>Вместе уже</h2>
+            <h1>{{now}} дней</h1>
+        </div>
+        <!-- Иконка сердца -->
+        <div class="heart">
+            <i class="fas fa-heart"></i>
+        </div>
+    {% else %}
+    <div class="text-container">
+        <h1>Вы не авторизованы</h1>
+        <a href="{% url 'login' %}">
+            <button class="button">Авторизация</button>
+        </a>
+    </div>
+    {%endif%}
+</body>
+</html>

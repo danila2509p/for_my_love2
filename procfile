@@ -1,0 +1,1 @@
+web: gunicorn love.wsgi:application --log-file -

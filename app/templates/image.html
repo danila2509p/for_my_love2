@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Метатеги и подключение стилей без изменений -->
+    <style>
+        /* Основные стили (без изменений) */
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Запрет горизонтальной прокрутки */
+        }
+
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: auto;
+            font-family: 'Dancing Script', cursive;
+            position: relative;
+        }
+
+        .text-container {
+            color: white;
+            font-size: 3rem;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .heart {
+            position: fixed;
+            bottom: 20px;
+            color: red;
+            font-size: 3rem;
+            opacity: 0;
+            animation: heartAppear 2s ease-in-out forwards, heartBeat 1.5s infinite ease-in-out 2s;
+        }
+
+        @keyframes heartAppear {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .button, .button1, .file-input-label {
+            background-color: red;
+            color: white;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease-in-out forwards 1s;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            position: fixed;
+            white-space: nowrap; /* Запрет переноса текста */
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .button:hover, .button1:hover, .file-input-label:hover {
+            background-color: darkred;
+            transform: scale(1.05);
+        }
+
+        .button {
+            top: 20px;
+            right: 20px;
+        }
+
+        .button1 {
+            top: 20px;
+            left: 20px;
+        }
+
+        .form-container {
+            position: fixed;
+            top: 80px; /* Увеличен отступ сверху */
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column; /* Вертикальное расположение */
+            align-items: center; /* Центрирование по горизонтали */
+            gap: 10px;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .file-input-label {
+            text-align: center;
+            position: relative; /* Убрано фиксированное позиционирование */
+            opacity: 1;
+            animation: fadeInUp 1s ease-in-out forwards 1s;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        .images-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 160px; /* Увеличен отступ сверху */
+            padding: 10px;
+            box-sizing: border-box; /* Учитываем padding в ширине */
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            margin-top: 5%;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #ccc;
+        }
+
+        /* Медиа-запросы для адаптивности */
+        @media (max-width: 768px) {
+            .button, .button1, .file-input-label {
+                font-size: 1.2rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .button {
+                right: 10px;
+                top: 10px;
+            }
+
+            .button1 {
+                left: 10px;
+                top: 10px;
+            }
+
+            .form-container {
+                top: 70px;
+                width: 80%;
+            }
+
+            .images-container {
+                margin-top: 140px;
+                padding: 5px; /* Уменьшен отступ */
+            }
+
+            .heart {
+                font-size: 2rem;
+                bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .button, .button1, .file-input-label {
+                font-size: 1rem;
+                padding: 0.4rem 0.8rem;
+            }
+
+            .button {
+                right: 5px;
+                top: 5px;
+            }
+
+            .button1 {
+                left: 5px;
+                top: 5px;
+            }
+
+            .form-container {
+                top: 60px;
+                width: 90%;
+                gap: 5px; /* Уменьшен отступ между элементами формы */
+            }
+
+            .images-container {
+                margin-top: 120px;
+                padding: 5px; /* Уменьшен отступ */
+            }
+
+            .heart {
+                font-size: 1.5rem;
+                bottom: 5px;
+            }
+
+            img {
+                margin: 5px; /* Уменьшен отступ между изображениями */
+            }
+        }
+
+        @media (max-width: 320px) {
+            .text-container h1 {
+                font-size: 2rem; /* Уменьшен размер заголовка */
+            }
+
+            .button, .button1, .file-input-label {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .form-container {
+                top: 50px; /* Уменьшен отступ сверху */
+            }
+
+            .images-container {
+                margin-top: 100px; /* Уменьшен отступ сверху */
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    {% if auth == True %}
+        <a href="{% url 'main' %}">
+            <button class="button1">На главную</button>
+        </a>
+        <a href="{% url 'out' %}">
+            <button class="button">Выйти из аккаунта</button>
+        </a>
+
+        <!-- Форма для загрузки изображений -->
+        <div class="form-container">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- Кнопка "Обзор" -->
+                <label for="id_image" class="file-input-label">Обзор</label>
+                <input type="file" name="image" id="id_image" class="file-input" required>
+                <!-- Кнопка "Загрузить" -->
+                <button type="submit" class="file-input-label">Загрузить</button>
+            </form>
+        </div>
+
+        <!-- Контейнер для изображений -->
+        <div class="images-container">
+            {% for image in all_images %}
+                <img src="{{ image.image.url }}" alt="{{ image.title }}" class="clickable-image">
+            {% endfor %}
+        </div>
+
+        <!-- Иконка сердца -->
+        <div class="heart">
+            <i class="fas fa-heart"></i>
+        </div>
+
+        <!-- Скрипт для модального окна -->
+        <script>
+            const images = document.querySelectorAll('.clickable-image');
+            const modal = document.createElement('div');
+            modal.classList.add('modal');
+            document.body.appendChild(modal);
+
+            const modalContent = document.createElement('img');
+            modalContent.classList.add('modal-content');
+            modal.appendChild(modalContent);
+
+            const closeBtn = document.createElement('span');
+            closeBtn.classList.add('close');
+            closeBtn.innerHTML = '&times;';
+            modal.appendChild(closeBtn);
+
+            images.forEach(image => {
+                image.addEventListener('click', () => {
+                    modal.style.display = 'block';
+                    modalContent.src = image.src;
+                });
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        </script>
+    {% else %}
+        <div class="text-container">
+            <h1>Вы не авторизованы</h1>
+            <a href="{% url 'login' %}">
+                <button class="button">Авторизация</button>
+            </a>
+        </div>
+    {% endif %}
+</body>
+</html>
