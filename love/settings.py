@@ -16,7 +16,7 @@ STATICFILES_DIRS = [
 ]
 
 # Режим разработки
-DEBUG = False# Для разработки
+DEBUG = True# Для разработки
 
 ALLOWED_HOSTS = ['*']  # Для разработки
 
