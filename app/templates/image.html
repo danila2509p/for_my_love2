@@ -35,12 +35,25 @@
         }
 
         .heart {
-            position: fixed;
-            bottom: 20px;
+            position: absolute;
+            bottom: 80px; /* Увеличено значение для поднятия сердечка */
             color: red;
             font-size: 3rem;
             opacity: 0;
             animation: heartAppear 2s ease-in-out forwards, heartBeat 1.5s infinite ease-in-out 2s;
+        }
+
+        /* Медиа-запрос для мобильных устройств */
+        @media (max-width: 768px) {
+            .heart {
+                bottom: 120px; /* Еще больше поднимаем сердечко на мобильных устройствах */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .heart {
+                bottom: 150px; /* Дополнительный отступ для очень маленьких экранов */
+            }
         }
 
         @keyframes heartAppear {
