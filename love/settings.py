@@ -12,10 +12,13 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+MEDIA_URL = '/media/'  # URL для доступа к медиа-файлам
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,8 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^bt3_l%y(30&^6-(p0la0q&&46)d&jhi&4zd(-f@pf_dr#!$5v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -52,14 +54,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-# Статические файлы
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Папка для сбора статических файлов
-
-# Медиа-файлы
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Папка для загруженных пользователями файлов
-
 
 ROOT_URLCONF = 'love.urls'
 
@@ -86,14 +80,9 @@ WSGI_APPLICATION = 'love.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db',
-        'USER': 'dan',
-        'PASSWORD': 'Qpwo5555',
-        'HOST': '44.226.145.213',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default='postgres://dan:NereGLyGJEdLaRiGZjFhuPsMK2ERVkgG@db_ugwo.onrender.com:5432/db_ugwo'
+    )
 }
 
 
