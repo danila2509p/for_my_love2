@@ -9,16 +9,13 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-from email.policy import default
+
 from pathlib import Path
 import os
 import dj_database_url
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-MEDIA_URL = '/media/'  # URL для доступа к медиа-файлам
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,7 +25,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = 'django-insecure-^bt3_l%y(30&^6-(p0la0q&&46)d&jhi&4zd(-f@pf_dr#!$5v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -54,6 +52,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+# Статические файлы
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Папка для сбора статических файлов
+
+# Медиа-файлы
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Папка для загруженных пользователями файлов
+
 
 ROOT_URLCONF = 'love.urls'
 
@@ -81,7 +87,7 @@ WSGI_APPLICATION = 'love.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default="postgresql://dan:NereGLyGJEdLaRiGZjFhuPsMK2ERVkgG@dpg-cuqt499opnds73fenjs0-a/db_ugwo"
+        default="postgresql://dan:NereGLyGJEdLaRiGZjFhuPsMK2ERVkgG@dpg-cuqt499opnds73fenjs0-a.oregon-postgres.render.com/db_ugwo"
     )
 }
 
