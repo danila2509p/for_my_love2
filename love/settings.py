@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+from email.policy import default
 from pathlib import Path
 import os
 import dj_database_url
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'love.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://dan:NereGLyGJEdLaRiGZjFhuPsMK2ERVkgG@db_ugwo.onrender.com:5432/db_ugwo'
+        default="postgresql://dan:NereGLyGJEdLaRiGZjFhuPsMK2ERVkgG@dpg-cuqt499opnds73fenjs0-a/db_ugwo"
     )
 }
 
