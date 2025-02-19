@@ -16,8 +16,6 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-MEDIA_URL = '/media/'  # URL для доступа к медиа-файлам
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,6 +26,7 @@ SECRET_KEY = 'django-insecure-^bt3_l%y(30&^6-(p0la0q&&46)d&jhi&4zd(-f@pf_dr#!$5v
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -53,6 +52,14 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+# Статические файлы
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Папка для сбора статических файлов
+
+# Медиа-файлы
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Папка для загруженных пользователями файлов
+
 
 ROOT_URLCONF = 'love.urls'
 
@@ -80,8 +87,12 @@ WSGI_APPLICATION = 'love.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db',
+        'USER': 'dan',
+        'PASSWORD': 'Qpwo5555',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
