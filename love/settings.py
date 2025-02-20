@@ -28,10 +28,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = 'django-insecure-^bt3_l%y(30&^6-(p0la0q&&46)d&jhi&4zd(-f@pf_dr#!$5v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Application definition
 
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'love.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default="postgresql://dan:nCD409tUB1c6pK2Mom2Pi6QeHAHHfrBI@dpg-curdg9ij1k6c73b19kog-a.oregon-postgres.render.com/db_5pi5"
+        default="postgresql://dan:vH2V7YW5tz5y6CzaP4QdSos3ZBXPcWB3@dpg-curm561u0jms73c04sj0-a.oregon-postgres.render.com/db_6vcy"
     )
 }
 

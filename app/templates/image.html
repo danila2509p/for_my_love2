@@ -296,7 +296,7 @@
         <!-- Контейнер для изображений -->
         <div class="images-container">
             {% for image in all_images %}
-                <img src="{{ image.image.url }}" alt="{{ image.title }}" class="clickable-image">
+                <img src="data:image/jpeg;base64,{{ image }}" alt="q" class="clickable-image">
             {% endfor %}
         </div>
 
