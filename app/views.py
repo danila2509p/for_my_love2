@@ -79,7 +79,7 @@ def image(request):
 
     # Извлекаем все изображения из базы данных
     code_image = ImageModel.objects.all()
-    all_images = [img.image.decode('utf-8') for img in code_image]  # Декодируем байты в строку
+    all_images = [bytes(img.image).decode('utf-8') for img in code_image]
 
     context = {
         'auth': auth,
