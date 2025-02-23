@@ -80,9 +80,14 @@ WSGI_APPLICATION = 'love.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default="postgresql://dan:vH2V7YW5tz5y6CzaP4QdSos3ZBXPcWB3@dpg-curm561u0jms73c04sj0-a.oregon-postgres.render.com/db_6vcy"
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db',
+        'USER': 'dan',
+        'PASSWORD': 'Qpwo5555',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
 }
 
 
